@@ -1,8 +1,7 @@
 # Apollo GraphQL Android App
 
-Sometimes we need to work on old project and add new features.
-This is just a very simple sample to show how I integrated Apollo GraphQl in Groovy build ( that is an old version).
-An Android application that demonstrates the use of Apollo GraphQL client to fetch and display country data.
+Sometimes we need to work on legacy projects and add new features.  
+This is a simple example demonstrating how to integrate Apollo GraphQL into an Android project using a Groovy-based build script (an older version).
 
 ## Features
 
