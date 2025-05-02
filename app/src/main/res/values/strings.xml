@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Apollo GraphQL Tutorial</string>
+    <string name="languages">🗣️ Languages: %1$s</string>
+    <string name="country_code">Country Code: %1$s</string>
+    <string name="continent">🌍 Continent: %1$s</string>
+    <string name="capital">🏛️ Capital: %1$s</string>
+    <string name="currency">💰 Currency: %1$s</string>
+    <string name="countries_app">Countries App</string>
+    <string name="world_icon">🌍</string>
+    <string name="capital_icon">🏛️ %1$s</string>
+    <string name="explore_the_world">Explore the world</string>
 </resources>

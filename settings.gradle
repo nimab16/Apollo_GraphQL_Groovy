@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "Apollo GraphQL Tutorial"
+rootProject.name = "Apollo GraphQL Groovy"

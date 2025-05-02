@@ -1,4 +1,4 @@
-package com.example.apollographqltutorial
+package com.example.apollographql
 
 import org.junit.Test
 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.apollographql.ui.fragments.splash.SplashFragment"
+        android:label="SplashFragment">
+        <action
+            android:id="@+id/action_splashFragment_to_countriesListFragment"
+            app:destination="@id/countriesListFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/countriesListFragment"
+        android:name="com.example.apollographql.ui.fragments.CountriesListFragment"
+        android:label="Countries List"
+        tools:layout="@layout/fragment_countries_list">
+        <action
+            android:id="@+id/action_countriesListFragment_to_countryDetailsFragment"
+            app:destination="@id/countryDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/countryDetailsFragment"
+        android:name="com.example.apollographql.ui.fragments.CountryDetailsFragment"
+        android:label="Country Details"
+        tools:layout="@layout/fragment_country_details">
+        <argument
+            android:name="countryCode"
+            app:argType="string" />
+    </fragment>
+
+</navigation> 
