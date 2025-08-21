@@ -9,6 +9,7 @@ This is a simple example demonstrating how to integrate Apollo GraphQL into an A
 - 🌍 **Countries List**: Display a list of countries with their flags and basic information
 - 🔍 **Country Details**: View detailed information about each country
 - ⚡ **Clean Architecture**: Using Clean Architecture principles
+- ✅ **Click Persistence**: Country item clicks are stored in Room and reflected in the UI
 
 ## Tech Stack
 
@@ -16,6 +17,7 @@ This is a simple example demonstrating how to integrate Apollo GraphQL into an A
 - **Architecture**: MVVM (Model-View-ViewModel)
 - **Dependency Injection**: Hilt
 - **GraphQL Client**: Apollo Client
+- **Persistence**: Room (offline cache and click tracking)
 - **UI Components**: 
   - Navigation Component
   - ViewBinding
@@ -27,8 +29,11 @@ This is a simple example demonstrating how to integrate Apollo GraphQL into an A
 ## Prerequisites
 
 - Android SDK 24 or higher
-- Kotlin 1.8 or higher
-- Gradle 7.0 or higher
+- JDK 11 or 17 (recommended)
+
+Note on build environment:
+- Using JDK 19+ with this older AGP setup (4.1.x) can cause manifest processing failures
+  (InaccessibleObjectException via Gson). Use JDK 11 or 17, or upgrade AGP if you need JDK 19+.
 
 ## Getting Started
 
@@ -73,6 +78,17 @@ app/
 - **SplashFragment**: Animated splash screen with Lottie
 - **CountriesListFragment**: Displays list of countries
 - **CountryDetailsFragment**: Shows detailed country information
+
+### Room-backed click tracking
+- Entity: `CountryClickEntity(code: String, clickedAt: Long)` stored in the `country_clicks` table
+- DAO:
+  - `upsertCountryClick(click: CountryClickEntity)`
+  - `observeClickedCodes(): Flow<List<String>>`
+- Database: `AppDatabase` now includes `CountryClickEntity` (version 2) with destructive migration fallback
+- DI: `CountryDao` is provided via Hilt in `AppModule`
+- UI wiring:
+  - `CountriesListFragment` injects `CountryDao`, persists clicks on item tap, and observes `observeClickedCodes()`
+  - `CountriesAdapter` receives an `isClicked(code)` lambda to style items based on persisted state
 
 ### Architecture
 - Follows Clean Architecture principles

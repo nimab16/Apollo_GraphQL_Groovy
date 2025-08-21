@@ -51,6 +51,7 @@
                     android:id="@+id/tv_country_continent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
 

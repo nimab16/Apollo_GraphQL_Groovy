@@ -43,14 +43,12 @@ class CountryDetailsFragment : Fragment() {
             viewModel.state.collect { state ->
                 binding.progressBar.visibility = if (state.isLoading) View.VISIBLE else View.GONE
                 state.country?.let { country ->
-                    binding.tvCountryName.text = country.name
+                    binding.tvCountryName.text = "${country.name} ${country.emoji}"
                     binding.tvCountryCode.text = getString(R.string.country_code, country.code)
-                    binding.tvCountryContinent.text =
-                        getString(R.string.continent, country.continent)
+                    binding.tvCountryContinent.text = getString(R.string.continent, country.continent)
                     binding.tvCountryCapital.text = getString(R.string.capital, country.capital)
                     binding.tvCountryCurrency.text = getString(R.string.currency, country.currency)
-                    binding.tvCountryLanguages.text =
-                        getString(R.string.languages, country.languages.joinToString(", "))
+                    binding.tvCountryLanguages.text = getString(R.string.languages, country.languages.joinToString(", "))
                 }
             }
         }

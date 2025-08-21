@@ -64,26 +64,27 @@ dependencies {
 
     // Apollo GraphQL
     implementation "com.apollographql.apollo3:apollo-runtime:$rootProject.ext.apollo_version"
-    // optional: for coroutines support
-//    implementation "com.apollographql.apollo3:apollo-coroutines-support:$rootProject.ext.apollo_version"
 
     // Coroutine Image Loader
     implementation "io.coil-kt:coil:1.1.1"
 
     // Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
-//    implementation "androidx.legacy:legacy-support-v4:$legacy_support_v4_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
-//    kapt "androidx.hilt:hilt-compiler:1.0.0"
-//    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_compiler_version"
-//    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
-//    kapt "androidx.hilt:hilt-compiler:1.0.0"
 
     // Lottie Animation
     implementation 'com.airbnb.android:lottie:6.3.0'
 
-    // Testing
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    // Room (offline cache)
+    def room_version = "2.5.2"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    // Unit testing
+    testImplementation 'junit:junit:4.13.2'
+    // Align with Kotlin 1.6.x used by the project to avoid metadata mismatch
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
+    // Mockito not currently used in tests; remove newer 5.x which requires newer Kotlin
+    // Add back a 4.x version if needed later
 }

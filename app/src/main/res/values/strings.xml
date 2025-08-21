@@ -9,4 +9,6 @@
     <string name="world_icon">🌍</string>
     <string name="capital_icon">🏛️ %1$s</string>
     <string name="explore_the_world">Explore the world</string>
+    <string name="flag">🏳️ Flag: %1$s</string>
+    <string name="search_countries">Search countries</string>
 </resources>

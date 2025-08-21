@@ -1,5 +1,6 @@
 package com.example.apollographql.presentation.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.apollographql.R
 import com.example.apollographql.databinding.ItemCountryBinding
 import com.example.apollographql.domain.SimpleCountry
+import androidx.core.graphics.toColorInt
 
 class CountriesAdapter(
+    private val isClicked: (String) -> Boolean,
     private val onCountryClick: (SimpleCountry) -> Unit
 ) : ListAdapter<SimpleCountry, CountriesAdapter.CountryViewHolder>(CountryDiffCallback()) {
 
@@ -19,7 +22,7 @@ class CountriesAdapter(
             parent,
             false
         )
-        return CountryViewHolder(binding, onCountryClick)
+        return CountryViewHolder(binding, isClicked, onCountryClick)
     }
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
@@ -28,14 +31,26 @@ class CountriesAdapter(
 
     class CountryViewHolder(
         private val binding: ItemCountryBinding,
+        private val isClicked: (String) -> Boolean,
         private val onCountryClick: (SimpleCountry) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
+
         fun bind(country: SimpleCountry) {
             binding.tvCountryName.text = country.name
             binding.tvCountryCapital.text =
                 binding.root.context.getString(R.string.capital_icon, country.capital)
             binding.tvCountryEmoji.text = country.emoji
-            binding.root.setOnClickListener { onCountryClick(country) }
+
+            // Apply background color based on persisted state
+            val clicked = isClicked(country.code)
+            binding.cardContainer.setCardBackgroundColor(
+                if (clicked) itemView.context.getString(R.string.grey).toColorInt() else Color.WHITE
+            )
+
+            binding.root.setOnClickListener {
+                binding.cardContainer.setCardBackgroundColor(itemView.context.getString(R.string.grey).toColorInt())
+                onCountryClick(country)
+            }
         }
     }
 

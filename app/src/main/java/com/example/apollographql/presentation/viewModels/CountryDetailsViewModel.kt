@@ -1,6 +1,4 @@
 package com.example.apollographql.presentation.viewModels
-
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.apollographql.domain.DetailCountry
@@ -25,7 +23,6 @@ class CountryDetailsViewModel @Inject constructor(
     val state = _state.asStateFlow()
 
     fun loadCountryDetails(code: String) {
-        Log.d("CountryDetailsViewModel", "Loading details for country code: $code")
         viewModelScope.launch {
             _state.update {
                 it.copy(
@@ -34,7 +31,6 @@ class CountryDetailsViewModel @Inject constructor(
             }
             
             val countryDetails = getCountryDetailUseCase.invoke(code)
-            Log.d("CountryDetailsViewModel", "Received country details: $countryDetails")
             
             _state.update {
                 it.copy(
